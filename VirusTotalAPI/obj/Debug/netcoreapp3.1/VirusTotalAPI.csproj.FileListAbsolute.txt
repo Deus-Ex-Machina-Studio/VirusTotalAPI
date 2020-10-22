@@ -1,0 +1,15 @@
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\VirusTotalAPI.exe
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\VirusTotalAPI.deps.json
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\VirusTotalAPI.runtimeconfig.json
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\VirusTotalAPI.runtimeconfig.dev.json
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\VirusTotalAPI.dll
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\VirusTotalAPI.pdb
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.csprojAssemblyReference.cache
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.AssemblyInfoInputs.cache
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.AssemblyInfo.cs
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.dll
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.pdb
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.genruntimeconfig.cache
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.csproj.CoreCompileInputs.cache
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\GITHUB\VirusTotalAPI\VirusTotalAPI\obj\Debug\netcoreapp3.1\VirusTotalAPI.csproj.CopyComplete

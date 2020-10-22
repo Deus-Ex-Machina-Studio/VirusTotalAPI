@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "7Bn8hoW/r8ZALhRuL0rclVJ1uDOgmsMTLUwyG148NYbgE6oRffPhQhOWafyvs+VAVQfWVG1ZoSLZeoEh0pLSWA==",
+  "success": true,
+  "projectFilePath": "D:\\GITHUB\\VirusTotalAPI\\VirusTotalAPI\\VirusTotalAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leshy\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
