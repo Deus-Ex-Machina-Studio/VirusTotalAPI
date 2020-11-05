@@ -10,6 +10,9 @@ using System.Net.Http;
 using System.IO;
 using Newtonsoft.Json.Serialization;
 
+/// <summary>
+/// Модуль VirusTotalAPI
+/// </summary>
 namespace VirusTotal {
     /// <summary>
     /// Модуль API
@@ -23,7 +26,7 @@ namespace VirusTotal {
         /// <summary>
         /// URL
         /// </summary>
-        const string URL = "https://www.virustotal.com/vtapi/v2";
+        public const string URL = "https://www.virustotal.com/vtapi/v2";
 
         /// <summary>
         /// Ключ api
@@ -50,9 +53,26 @@ namespace VirusTotal {
         /// </summary>
         /// <param name="filePath"> - путь к файлу. </param>
         public static void ScanFile(string filePath) {
-            byte[] p_request = webClient.UploadFile($"{URL}/file/scan?apikey={APIKEY}", filePath);
-            string s_json = Encoding.ASCII.GetString(p_request);
-            lastScan = JsonSerializer.Deserialize<RScan>(s_json);
+            try {
+                byte[] p_request = webClient.UploadFile($"{URL}/file/scan?apikey={APIKEY}", filePath);
+                string s_json = Encoding.ASCII.GetString(p_request);
+                lastScan = JsonSerializer.Deserialize<RScan>(s_json);
+            } catch (Exception exception) {
+                Console.WriteLine(exception);
+            }
+        }
+
+        /// <summary>
+        /// Отправить URL на проверку
+        /// </summary>
+        /// <param name="url"> - URL сайта или файла. </param>
+        public static void ScanURL(string url) {
+            try { 
+                string p_request = POST($"{URL}/url/scan?apikey={APIKEY}&url={url}");
+                lastScan = JsonSerializer.Deserialize<RScan>(p_request);
+            } catch (Exception exception) {
+                Console.WriteLine(exception);
+            }
         }
 
         /// <summary>
@@ -61,6 +81,22 @@ namespace VirusTotal {
         public static void ReportFile() {
             try {
                 string s_json = GET($"{URL}/file/report?apikey={APIKEY}&resource={lastScan.resource}");
+                ScanResult scan = JsonSerializer.Deserialize<ScanResult>(s_json);
+                scan.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+                scans.Insert(0, scan);
+                if (scans.Count >= maxScansList) scans = SeparateList<ScanResult>(scans, 0, maxScansList);
+                lastScan = null;
+            } catch (Exception exception) {
+                Console.WriteLine(exception);
+            }
+        }
+
+        /// <summary>
+        /// Получить результат сканирования по URL
+        /// </summary>
+        public static void ReportURL() {
+            try {
+                string s_json = GET($"{URL}/url/report?apikey={APIKEY}&resource={lastScan.url}");
                 ScanResult scan = JsonSerializer.Deserialize<ScanResult>(s_json);
                 scan.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
                 scans.Insert(0, scan);
@@ -100,7 +136,30 @@ namespace VirusTotal {
         public static string GET(string url) {
             WebRequest request = WebRequest.Create(url);
             request.Credentials = CredentialCache.DefaultCredentials;
+            request.Method = "GET";
+            WebResponse response = request.GetResponse();
 
+            string t_string = "";
+
+            using (Stream dataStream = response.GetResponseStream()) {
+                StreamReader reader = new StreamReader(dataStream);
+                t_string += reader.ReadToEnd();
+            }
+
+            response.Close();
+
+            return t_string;
+        }
+
+        /// <summary>
+        /// Простой метод POST
+        /// </summary>
+        /// <param name="url"> - url.</param>
+        /// <returns></returns>
+        public static string POST(string url) {
+            WebRequest request = WebRequest.Create(url);
+            request.Credentials = CredentialCache.DefaultCredentials;
+            request.Method = "POST";
             WebResponse response = request.GetResponse();
 
             string t_string = "";
@@ -128,6 +187,7 @@ namespace VirusTotal {
         public string permalink { set; get; }
         public string md5 { set; get; }
         public string verbose_msg { set; get; }
+        public string url { set; get; }
         public int response_code { set; get; }
     }
 
